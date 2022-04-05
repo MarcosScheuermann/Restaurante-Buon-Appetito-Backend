@@ -8,9 +8,9 @@ app.use(express.urlencoded({extended:true}));
 
 app.post("/api/login", (rep,res)=>{
     console.log(req.body);
-    res.status(200).json({mje:"el back esta funcionando"})
+    res.status(200).json({mje:"el back esta funcionando."})
 });
 
-app.Listen (4000, ()=>console.log("Servidor Funciondo en 4000"));
+app.listen (4000, ()=>console.log("Servidor Funcionando en 4000"));
 
 
