@@ -1,16 +1,24 @@
-const express = require ("express");
-const cors = require ("cors");
+const express = require('express');
+const cors = require('cors');
+const PORT = process.env.PORT || 4000;
+const dotenv = require('dotenv');
 const app = express();
-
+dotenv.config();
+const users = require('./routes/users');
+// const authRoutes = require('./routes/auth');
+const connectDB = require('./config/db');
+connectDB();
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({extended:true}));
 
-app.post("/api/login", (rep,res)=>{
-    console.log(req.body);
-    res.status(200).json({mje:"el back esta funcionando."})
-});
+app.use('/api/users', users);
+// app.use('/api/auth', authRoutes);
 
-app.listen (4000, ()=>console.log("Servidor Funcionando en 4000"));
+app.listen(PORT, ()=> {
+    console.log(`Servidor funcionando en el puerto ${PORT}`)
+})
+
+
 
 
