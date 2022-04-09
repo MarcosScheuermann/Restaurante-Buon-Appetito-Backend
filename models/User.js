@@ -24,6 +24,9 @@ const UserSchema = new Schema({
   },
   role:{
     type:String,
+    required:true,
+    enum:['USER','ADMIN'],
+    default:'USER'
   }
 },{
   versionKey:false,

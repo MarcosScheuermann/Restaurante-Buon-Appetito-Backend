@@ -11,13 +11,13 @@ exports.login = async (req, res)=>{
     }
     const passwordCheck = await bcrypt.compare(req.body.password, user.password);
     if(!passwordCheck){
-      return res.status(400).json({ok:false, message:'Credenciales incorrectas'});
+      return res.status(400).json({ok:false, message:'Credenciales incorrectas.'});
     }
     const token = jwt.sign({id:user._id},process.env.SECRET_KEY,{expiresIn:'1h'});
     res.status(200).json({ok:true, token:token});
   } catch (error) {
     console.log(error);
-    res.status(401).json({mensaje:'Credenciales no validas'})
+    res.status(401).json({mensaje:'Credenciales no válidas.'})
   }
 }
 
@@ -42,7 +42,7 @@ exports.addUser = async (req,res) =>{
 //! AUTORIZAR USUARIO
 exports.getAuth = async (req,res)=>{
   try {
-    const id = req.userId;
+    const id = req.userid;
     const user = await User.findById(id).select('-password');
     res.status(200).json({ok:true, user:user})
   } catch (error) {
@@ -95,20 +95,10 @@ exports.updateUser = async (req,res) =>{
   // }
   try {
     const userUpdated=req.body
-    const newData = await Users.findByIdAndUpdate(req.params.id, userUpdated, { new: true }).select('-password')
+    const newData = await User.findByIdAndUpdate(req.params.id, userUpdated, { new: true }).select('-password')
     return res.status(200).json(newData)
   } catch (error) {
     console.log(error);
 res.status(400).json({ msg: "Error en la solicitud." })
   }
 }
-
-
-
-
-
-
-
-
-
-
