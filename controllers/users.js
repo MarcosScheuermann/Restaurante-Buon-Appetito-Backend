@@ -42,10 +42,10 @@ exports.addUser = async (req,res) =>{
 //! AUTORIZAR USUARIO
 exports.getAuth = async (req,res)=>{
   try {
-    const id = req.userid;
+    const id = req.userId;
     const user = await User.findById(id).select('-password');
-    res.status(200).json({ok:true, user:user})
-  } catch (error) {
+    res.status(200).json({ok:true, user:user});    
+    } catch (error) {
     console.log(error);
     res.status(400).json({ok:false, message:'Ha ocurrido un error'})
   }
