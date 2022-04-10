@@ -5,6 +5,8 @@ const dotenv = require('dotenv');
 const app = express();
 dotenv.config();
 const users = require('./routes/users');
+const products = require('./routes/products');
+
 // const authRoutes = require('./routes/auth');
 const connectDB = require('./config/db');
 connectDB();
@@ -13,6 +15,8 @@ app.use(cors());
 app.use(express.urlencoded({extended:true}));
 
 app.use('/api/users', users);
+app.use('/api/products', products);
+
 // app.use('/api/auth', authRoutes);
 
 app.listen(PORT, ()=> {
