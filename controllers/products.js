@@ -13,3 +13,14 @@ exports.getProduct = async (req, res)=>{
         res.status(400).json({ok:false, mensaje:"Ocurrio un Error"})
     }
 }
+
+exports.addProduct = async (req, res) =>{
+    try {
+        const newProduct = new Product(req.body);
+       await newProduct.save();
+       res.status(201).json({ok:true, mensaje:"Producto Agregado"})
+    } catch (error) {
+        console.log(error);
+        res.status(400).json({ok:false, mensaje:"Ocurrio un Error"})
+    }
+}
