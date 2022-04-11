@@ -8,6 +8,7 @@ const users = require('./routes/users');
 const products = require('./routes/products');
 
 // const authRoutes = require('./routes/auth');
+// app.use('/api/auth', authRoutes);
 const connectDB = require('./config/db');
 connectDB();
 app.use(express.json());
