@@ -5,8 +5,6 @@ const dotenv = require('dotenv');
 const app = express();
 dotenv.config();
 const users = require('./routes/users');
-const products = require('./routes/products');
-
 // const authRoutes = require('./routes/auth');
 // app.use('/api/auth', authRoutes);
 const connectDB = require('./config/db');
@@ -16,9 +14,6 @@ app.use(cors());
 app.use(express.urlencoded({extended:true}));
 
 app.use('/api/users', users);
-app.use('/api/products', products);
-
-// app.use('/api/auth', authRoutes);
 
 app.listen(PORT, ()=> {
     console.log(`Servidor funcionando en el puerto ${PORT}`)
