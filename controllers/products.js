@@ -28,3 +28,14 @@ exports.addProduct = async (req, res) =>{
         res.status(400).json({ok:false, mensaje:"Ocurrio un Error"})
     }
 }
+
+exports.deleteProduct = async (req, res) => {
+  try {
+    const id = req.params.id;
+    await Product.findByIdAndDelete(id);
+    res.status(200).json({ ok: true, mensaje: "Producto Eliminado" });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({ ok: false, mensaje: "Ocurrio un Error" });
+}
+};
