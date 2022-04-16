@@ -2,7 +2,7 @@ const Product = require("../models/Product");
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
-exports.getProduct = async (req, res)=>{
+exports.getProducts = async (req, res)=>{
     try {
        const id = req.userId;
        const user = await User.findById(id);
@@ -38,4 +38,15 @@ exports.deleteProduct = async (req, res) => {
     console.log(error);
     res.status(400).json({ ok: false, mensaje: "Ocurrio un Error" });
 }
+};
+
+exports.getProduct = async (req, res) => {
+  try {
+      const id = req.params.id;
+      const product = await Product.findById();
+      res.status(200).json({ ok: true, product: product });
+    } catch (error) {
+    console.log(error);
+    res.status(400).json({ ok: false, mensaje: "Ocurrio un Error" });
+  }
 };
