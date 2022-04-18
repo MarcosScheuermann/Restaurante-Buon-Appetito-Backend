@@ -3,7 +3,7 @@ const { getProduct, addProduct, deleteProduct, getProducts } = require("../contr
 const { verifyToken } = require("../middlewares/auth");
 const router = Router();
 
-router.get("/", verifyToken, getProducts )
+router.get("/", getProducts )
 router.get("/product/:id", getProduct )
 router.post("/", addProduct)
 router.delete("/:id", deleteProduct)

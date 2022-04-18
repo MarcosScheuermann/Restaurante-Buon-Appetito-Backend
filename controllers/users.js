@@ -13,7 +13,7 @@ exports.login = async (req, res)=>{
     if(!passwordCheck){
       return res.status(400).json({ok:false, message:'Credenciales incorrectas.'});
     }
-    const token = jwt.sign({id:user._id},process.env.SECRET_KEY);
+    const token = jwt.sign({id:user._id},process.env.SECRET_KEY,{expiresIn:'60m'});
     res.status(200).json({ok:true, token:token});
   } catch (error) {
     console.log(error);
