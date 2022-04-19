@@ -43,4 +43,7 @@ exports.getProduct = async (req, res) => {
     console.log(error);
     res.status(400).json({ ok: false, mensaje: "Ocurrio un Error" });
   }
+
 };
+};
+
