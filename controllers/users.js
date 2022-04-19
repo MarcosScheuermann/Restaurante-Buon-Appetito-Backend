@@ -102,3 +102,46 @@ exports.updateUser = async (req,res) =>{
 res.status(400).json({ msg: "Error en la solicitud." })
   }
 }
+
+exports.getUsers = async (req, res)=>{
+  try {
+       const users = await User.find();
+       res.status(200).json({ ok: true, users: users });
+  } catch (error) {
+      console.log(error);
+      res.status(400).json({ok:false, mensaje:"Ocurrio un Error"})
+  }
+}
+
+// exports.addProduct = async (req, res) =>{
+//   try {
+//       const newProduct = new Product(req.body);
+//      const productadd = await newProduct.save();
+//      res.status(201).json({ok:true, productadd: productadd })
+//   } catch (error) {
+//       console.log(error);
+//       res.status(400).json({ok:false, mensaje:"Ocurrio un Error"})
+//   }
+// }
+
+// exports.deleteProduct = async (req, res) => {
+// try {
+//   const id = req.params.id;
+//   await Product.findByIdAndDelete(id);
+//   res.status(200).json({ ok: true, mensaje: "Producto Eliminado" });
+// } catch (error) {
+//   console.log(error);
+//   res.status(400).json({ ok: false, mensaje: "Ocurrio un Error" });
+// }
+// };
+
+exports.getUser = async (req, res) => {
+try {
+    const id = req.params.id;
+    const user = await User.findById(id);
+    res.status(200).json({ ok: true, user: user });
+  } catch (error) {
+  console.log(error);
+  res.status(400).json({ ok: false, mensaje: "Ocurrio un Error" });
+}
+};
